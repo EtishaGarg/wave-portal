@@ -109,6 +109,7 @@ function App() {
 
         <div className="bio">
           I'm Etisha! Welcome to my wave portal. How are you doing today?
+          <br/><br/>
           Total number of people who have waved : {waveCount}
         </div>
 
