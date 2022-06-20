@@ -6,6 +6,7 @@ import './App.css';
 function App() {
 
   const [currentAccount, setCurrentAccount] = React.useState("");
+  const [waveCount, setWaveCount] = React.useState("");
   const contractAddress = "0x2a95f5C619630A50B0a596e6010bc899725e549E"
   const contractABI = abi.abi;
 
@@ -21,7 +22,7 @@ function App() {
 
       const accounts = await ethereum.request({ method: "eth_accounts"});
 
-      if(accounts.length != 0){
+      if(accounts.length !== 0){
         console.log("Found an authorized account: ",accounts[0]);
         setCurrentAccount(accounts[0]);
       } else {
@@ -31,10 +32,6 @@ function App() {
       console.log(error);
     }
   }
-
-  React.useEffect(() => {
-    CheckIfWalletIsConnected()
-  },[])
 
   const connectWallet = async() => {
     try {
@@ -52,8 +49,24 @@ function App() {
     }
   }
 
-  const wave = async() => {
+  const initCount = async() => {
+    try {
+      const {ethereum} = window;
+      
+      if(ethereum){
+        const provider = new ethers.providers.Web3Provider(ethereum);
+        const signer = provider.getSigner();
+        const wavePortalContract = new ethers.Contract(contractAddress, contractABI, signer);
 
+        let count = await wavePortalContract.getTotalWaves();
+        setWaveCount(count.toNumber());
+      }
+    } catch(error) {
+      console.log(error);
+    }
+  }
+
+  const wave = async() => {
     try {
       const {ethereum} = window;
       
@@ -74,11 +87,18 @@ function App() {
         count = await wavePortalContract.getTotalWaves();
         console.log("Retreived total wave count...", count.toNumber());
 
+        setWaveCount(count.toNumber());
       }
     } catch(error) {
       console.log(error);
     }
   }
+
+  React.useEffect(() => {
+    CheckIfWalletIsConnected();
+    initCount();
+    // eslint-disable-next-line
+  },[]);
 
   return (
     <div className="mainContainer">
@@ -89,6 +109,7 @@ function App() {
 
         <div className="bio">
           I'm Etisha! Welcome to my wave portal. How are you doing today?
+          Total number of people who have waved : {waveCount}
         </div>
 
         <button className="waveButton" onClick={wave}>
