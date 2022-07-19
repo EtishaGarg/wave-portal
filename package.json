@@ -26,6 +26,7 @@
     "hardhat": "^2.9.9"
   },
   "dependencies": {
+    "@arcana/auth": "^0.0.9-beta8",
     "dotenv": "^16.0.1"
   }
 }

@@ -1,3 +1,9 @@
+html, body {
+  margin: 0;
+  height: 100%;
+  background-color:#1f2937;
+}
+
 .mainContainer {
   display: flex;
   justify-content: center;
@@ -15,12 +21,14 @@
 .header {
   font-size: 40px;
   font-family: sans-serif;
+  color: white;
 }
 
 .bio {
   margin-top: 20px;
   font-size: 20px;
-  color: gray;
+  color: white;
+  margin-bottom: 20px;
 }
 
 .waveButton {
@@ -30,4 +38,35 @@
   font-size: 15px;
   margin-top: 15px;
   font-family: sans-serif;
+  background-color: #f5c77e;
+  color: gray;
+}
+
+.details {
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
+  color: white;
+}
+
+.details-input-box {
+  border-radius: 5px;
+  border-color: grey;
+  height: 80px;
+  font-size: 15px;
+  font-family: sans-serif;
+  vertical-align: top;
+  /* text-align: center; */
+}
+
+.wave-details {
+  background-color: #354357;
+  margin-top: 16px;
+  padding: 8px 12px;
+  text-align: left;
+  font-family: sans-serif;
+  color: white;
+  font-size: small;
+  row-gap: 100px;
 }

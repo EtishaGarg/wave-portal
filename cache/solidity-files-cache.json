@@ -37,8 +37,8 @@
       ]
     },
     "/Users/etishagarg/Downloads/Code/wave-portal/contracts/WavePortal.sol": {
-      "lastModificationDate": 1655730672886,
-      "contentHash": "e7e998909c89927fde1845d3eda1a595",
+      "lastModificationDate": 1656065722652,
+      "contentHash": "f64840e36eb2fafaf15550c1e2d061eb",
       "sourceName": "contracts/WavePortal.sol",
       "solcConfig": {
         "version": "0.8.4",
