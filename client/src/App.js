@@ -2,7 +2,6 @@ import React from "react";
 import {ethers} from "ethers";
 import abi from "./utils/WavePortal.json";
 import './App.css';
-// import { HDNode } from "ethers/lib/utils";
 
 function App() {
 
@@ -10,7 +9,7 @@ function App() {
   const [waveCount, setWaveCount] = React.useState("");
   const [message, setMessage] = React.useState("");
   const [allWaves, setAllWaves] = React.useState([]);
-  const contractAddress = "0xe62EE7Fe8F14C538900bbEE2055A1e319651b9A9";
+  const contractAddress = "0x5cA08FEf9CD62c5F6b1E14586dcC40f34a546880";
   const contractABI = abi.abi;
 
   const CheckIfWalletIsConnected = async() => {
@@ -83,7 +82,7 @@ function App() {
         let count = await wavePortalContract.getTotalWaves();
         console.log("Retreived total wave count...", count.toNumber());
 
-        const waveTxn = await wavePortalContract.wave(message);
+        const waveTxn = await wavePortalContract.wave(message, { gasLimit: 300000 });
         console.log("Mining ",waveTxn.hash);
 
         await waveTxn.wait();
